@@ -24,4 +24,8 @@ export class TodosService {
     async changeSatus(_id, complete) {
         return await this.todoModel.updateOne({_id}, {complete}).exec();
     }
+
+    async del(_id) {
+        return await this.todoModel.deleteOne({_id}).exec()
+    }
 }
