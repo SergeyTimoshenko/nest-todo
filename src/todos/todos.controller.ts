@@ -12,10 +12,18 @@ export class TodosController {
         return await this.todosService.fetchAll();
     }
 
+    @Get(':id')
+    async getById(
+        @Param() { id }
+    ) {
+        return await this.todosService.fetchById(id);
+    }
+
     @Post()
     async store(
         @Body() body
     ) {
+        
         const todo = await this.todosService.create(body)
 
         return todo;

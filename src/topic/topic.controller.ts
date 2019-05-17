@@ -19,6 +19,7 @@ export class TopicController {
     async store(
         @Body() body
     ) {
-        return await this.topicSrevice.create(body.topic)
+        console.log(body)
+        return await this.topicSrevice.create(body)
     }
 }

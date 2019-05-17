@@ -2,11 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Topic } from './topic.interface';
 import { Model } from 'mongoose';
+import { Todos } from '../todos/todos.interface';
 
 @Injectable()
 export class TopicService {
     constructor(
-        @InjectModel('Topic') private readonly topicModel: Model<Topic>
+        @InjectModel('Topic') private readonly topicModel: Model<Topic>,
+        @InjectModel('Todo') private readonly todoModel: Model<Todos>
     ) {}
     
     async create(topic: Topic) {
