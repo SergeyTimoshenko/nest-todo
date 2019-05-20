@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Put, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Param, Delete } from '@nestjs/common';
 import { TopicService } from './topic.service';
 
 
@@ -29,5 +29,11 @@ export class TopicController {
     ) {
         console.log(body, id)
         return await this.topicSrevice.update(id, body.title);
+    }
+    @Delete(':id')
+    async del(
+        @Param() {id}
+    ) {
+        return await this.topicSrevice.del(id);
     }
 }

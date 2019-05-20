@@ -25,4 +25,8 @@ export class TopicService {
     async update(_id, title) {
         return await this.topicModel.updateOne({_id}, {title}).exec();
     }
+
+    async del(_id) {
+        return await this.topicModel.deleteOne({_id}).exec();
+    }
 }
