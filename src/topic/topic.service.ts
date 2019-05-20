@@ -21,4 +21,8 @@ export class TopicService {
     async fetchAll() {
         return await this.topicModel.find().exec();
     }
+
+    async update(_id, title) {
+        return await this.topicModel.updateOne({_id}, {title}).exec();
+    }
 }

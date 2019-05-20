@@ -1,6 +1,6 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Param } from '@nestjs/common';
 import { TopicService } from './topic.service';
-import { get } from 'http';
+
 
 @Controller('topic')
 export class TopicController {
@@ -21,5 +21,13 @@ export class TopicController {
     ) {
         console.log(body)
         return await this.topicSrevice.create(body)
+    }
+    @Put(':id')
+    async update(
+        @Body() body,
+        @Param() {id}
+    ) {
+        console.log(body, id)
+        return await this.topicSrevice.update(id, body.title);
     }
 }
