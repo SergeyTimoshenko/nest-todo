@@ -27,6 +27,7 @@ export class TopicService {
     }
 
     async del(_id) {
+        await this.todoModel.deleteMany({topicId: _id}).exec()
         return await this.topicModel.deleteOne({_id}).exec();
     }
 }

@@ -24,7 +24,6 @@ export class TodosService {
     }
 
     async fetchById(topicId) {
-        console.log(topicId)
         return await this.todoModel.find({topicId}).exec();
     }
 

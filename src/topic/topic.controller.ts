@@ -19,7 +19,6 @@ export class TopicController {
     async store(
         @Body() body
     ) {
-        console.log(body)
         return await this.topicSrevice.create(body)
     }
     @Put(':id')
@@ -27,7 +26,6 @@ export class TopicController {
         @Body() body,
         @Param() {id}
     ) {
-        console.log(body, id)
         return await this.topicSrevice.update(id, body.title);
     }
     @Delete(':id')
