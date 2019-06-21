@@ -13,7 +13,8 @@ export class TodosService {
         const createTodo = await this.todoModel({
             name: todo.name,
             complete: false,
-            topicId: todo.topic._id
+            topicId: todo.topic._id,
+            description: ''
         })
 
         return await createTodo.save();
@@ -23,8 +24,12 @@ export class TodosService {
         return (await this.todoModel.find().exec()).reverse();
     }
 
-    async fetchById(topicId) {
+    async fetchByTopicId(topicId) {
         return await this.todoModel.find({topicId}).exec();
+    }
+
+    async fetchById(_id) {
+        return await this.todoModel.findOne({_id}).exec();
     }
 
     async changeSatus(_id, complete) {
@@ -35,5 +40,7 @@ export class TodosService {
         return await this.todoModel.deleteOne({_id}).exec();
     }
 
-
+    async update(_id, data) {
+        return await this.todoModel.updateOne({_id}, {...data}).exec();
+    }
 }

@@ -1,5 +1,6 @@
-import { Controller, Post, Body, Get, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Param, Delete, Patch } from '@nestjs/common';
 import { TodosService } from './todos.service';
+import bodyParser = require('body-parser');
 
 @Controller('todos')
 export class TodosController {
@@ -12,7 +13,14 @@ export class TodosController {
         return await this.todosService.fetchAll();
     }
 
-    @Get(':id')
+    @Get(':topicId')
+    async getByTopicId(
+        @Param() { topicId }
+    ) {
+        return await this.todosService.fetchByTopicId(topicId);
+    }
+
+    @Get('task/:id')
     async getById(
         @Param() { id }
     ) {
@@ -36,6 +44,15 @@ export class TodosController {
     ) {
         return await this.todosService.changeSatus(params.id, body.status)
     }
+
+    @Patch(':id')
+    async patch(
+        @Body() body,
+        @Param() {id}
+    ) {
+        return await this.todosService.update(id, body)
+    }
+
     @Delete(':id')
     async del(
         @Param() { id }
