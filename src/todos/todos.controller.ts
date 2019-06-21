@@ -1,6 +1,5 @@
 import { Controller, Post, Body, Get, Put, Param, Delete, Patch } from '@nestjs/common';
 import { TodosService } from './todos.service';
-import bodyParser = require('body-parser');
 
 @Controller('todos')
 export class TodosController {
