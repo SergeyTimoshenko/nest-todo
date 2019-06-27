@@ -1,4 +1,4 @@
-import { Controller, Body, Get, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Body, Get, Param, Put, Delete, Post } from '@nestjs/common';
 import { CommentService } from './comment.service';
 
 @Controller('comment')
@@ -16,6 +16,13 @@ export class CommentController {
         @Param() { id }
     ) {
         return await this.commentService.fetchOne(id);
+    }
+
+    @Post()
+    async create(
+        @Body() body
+    ) {
+        return await this.commentService.create(body);
     }
 
     @Put(':id')
